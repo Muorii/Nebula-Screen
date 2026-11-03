@@ -85,19 +85,30 @@ jobs:
           +kSDM/kT2IjnL1VDkFYRwttQvZjtuXICnm/gJozPd5jd54VzJlm9jfG27Zv5eagSwPcSo/fgG2SVdZa4hhpqqKGGGmqooYYaaqih
           hhpqqKGGGmqooYYaaqihhhpqqKGGGmqooYYaaqhhDv4DdUcZQgB4AAA=
           BUNDLE_END
-      - name: Bilder einsetzen (Ordner bilder/ im Repo)
+      - name: Bilder einsetzen (suche im ganzen Repo)
         working-directory: src
         run: |
           pip install pillow --break-system-packages -q || pip install pillow -q
           python3 - <<'PYEND'
           from PIL import Image
-          import os, shutil
+          import os, shutil, pathlib
+          root = pathlib.Path('..')
+          def find(name):
+              for p in root.rglob(name):
+                  if 'src' not in p.parts[1:2] and '.git' not in p.parts:
+                      return p
+              print('FEHLT im Repo: ' + name)
+              print('Dateien im Repo:')
+              for p in root.rglob('*'):
+                  if p.is_file() and '.git' not in p.parts and p.parts[1:2] != ('src',):
+                      print('  ', p)
+              raise SystemExit(1)
           n = 'src/main/resources/assets/nebulatrack/textures/gui/'
           m = 'src/main/resources/assets/minecraft/textures/gui/title/'
           os.makedirs(n, exist_ok=True); os.makedirs(m, exist_ok=True)
-          Image.open('../bilder/night_title.jpg').convert('RGB').save(n + 'night_title.png')
-          shutil.copy('../bilder/logo.png', n + 'logo.png')
-          shutil.copy('../bilder/minecraft.png', m + 'minecraft.png')
+          Image.open(find('night_title.jpg')).convert('RGB').save(n + 'night_title.png')
+          shutil.copy(find('logo.png'), n + 'logo.png')
+          shutil.copy(find('minecraft.png'), m + 'minecraft.png')
           Image.new('RGBA', (128, 14), (0, 0, 0, 0)).save(m + 'edition.png')
           PYEND
       - name: Passende Fabric-Versionen eintragen
