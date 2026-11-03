@@ -1,0 +1,120 @@
+name: Build Nebula Track
+on:
+  workflow_dispatch:
+  push:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 25
+      - name: Projekt entpacken
+        run: |
+          mkdir src && cd src
+          base64 -d <<'BUNDLE_END' | tar xz
+          H4sIAAAAAAAAA+08+XfbuNH5WX8Flt3XkIkMXZaz9ZF+qWPHbn3kxd7Ntq7rR5OQxJhXAUqy1uvvb+8MAJ6SfOTwdl8579kScQ7m
+          wswAIm09++bQBnjV78tPgOqn/N7pd191e6vt/hq2e/Wq231G+t8etWfPxiKxOSHPeBQld7W7r/53CrR1OfZ8lw657frs28yBDF5b
+          XV3Gf2D9Wpn/nW633X9G2t8GnTL8j/M/9sdDLxTkpkEAPJc8H9iX3HNW/CgKnpMJ48KLQmJ8f4MFF/r51siaB/aEhSvx+NL3xOh5
+          47bRSPtskZhHn5iT0CBy056NIY/GcbEO+1/I0kbj0haM3BCbOyNvwsSRHbBC07T4AptdhFgJ07ksZqHLQsdj6TICL2QOtwcJMZwo
+          gOk/2eFwPStd//4mmz0tq6wssOPYC4eCGCFLqCJJ4KzPbB4WeuPjRdr0dn3S1Z0jdz+IfRawMLETSb7SKBmFbZfxwnCqoIrJ3YPp
+          Lyt27K0XvuaDqsLCoEAyqHOYEB+YiMbcycjmhfE4ERRqY8aTGTF0J6OZsSDlIjYfeD4Th3YCTAmHpqEmQl7TTwI6WcBIdh3boZsP
+          tF6ZA1iWDgmsBMwSW1wJOvWS0eksZuZf7Ym9HQUxzGRRJwoH3nDM2Y7tjGBwL6FRjBQRlDOfoehskW4HZeIT9NOLwrFO1DL/anPT
+          koVq3TgykPTS8z1Y7RbB2X5S2NCfdj6c7B8fXXQ7sgPYiCFLHtjhtvFba/XDgbYEd76xD/Do/b/T7nc69f7/FKD4H9he+O2E4PH8
+          76z2+jX/nwIK/Eej+U2E4PH87/b6azX/nwKq/HfZ5KvLwOP53+v0Vmv+PwUs4n/ILse+nXDbufoqsvB4/vdXu69q/j8F3Mf/I/n9
+          FL9TbPA5c9wd/3c6nV63zP9ue3WtV8f/TwExMNYeMgJ8pwW+bzQaXhBHPCGlYBNCS7rtexCKHkJYGnqJZ/veL4xvLGytI0Ls5MhO
+          lE3wv+8NmDNzfEYnHT3cqedc7WCleOhQAQSwgHg+xAkL3UNV+LiROKYPOMSwONZo7NK9sbujAu4PbOiJhM9KQ2U5g3SAw7RAIXJ3
+          4+HYo2+5Pd2OwoRdL2sMLSHEpLFvzxin7+XHjixb0gHHoqfLBxwnnk/3XRx34CHDGq0XLxrkBWlJfpNNTKe8xtAY1CEhshBIQmyi
+          cCASdONoMJAto7hUDEWjaIojJGOBY5+OGHGiIMAcgCeImNq+H02ZS8wEagTjEPsDnvhfMCYgoreo6iRpRaLQn5GrMJoKgh3iSHgy
+          AxINNFZYbifE5ozI5ImLs9o8GsOEs2hMTMVb4gIX7dBhVhNCfxKNE+G5TPXldjhkcnjfFomcLcxnQqxhTSGFgVsNmeVyADtbCFKw
+          jMRLMzSCLFIPnYqIuTexEyYJBMOcJCh0OrWwsaiFG8GEgNh1k/gz+PtlYSs/glEQ+RPGwoUtLqPIZ3ZIprY4kGRa2Erj43qwEJ3A
+          MwwQFGz6f8fAJA5EUx0VHSaR5wKP8oWqtZuWXi/CkTccgXYnoOxcKhPjprWRVS9RXfrm4OD448X28eHhm6O3eU8ncMnK68LwCBpv
+          B/CFegpPQXEKmdkaEPM7h7J/j21f7A/DiLNtWzDTkIJrWOSPfyRQn0QHIJ5cVllUaoL46CUj3Y4YlkU4S8Y8BAUZs40FaJydg8oA
+          IlTEvpeYxj//KV4aC7Cxqc/CYTIim6SLmTKlNIA3uS21Zb5gqsNZ53zBAkAVAf1ffyVL6lFJEe0bLWeAWzj2/Q0i7JlpnKZqjs1i
+          5lJjMQKF3jjPRiZuUNDeyOUKHgeAAKsOb5CXegQYH2TtyqzYTApV+6FSUtOCRsvoocmvZslqbudEKt9Q6M7R24vtg/2do9OL0/3t
+          v+XSVNDg9XXEqjDK/B5Abdc9gGWbuRWl0cA0Crum0SQGbCAGmBnTSUBrE8dCeXXB3mOBpSe4bSzSP6lOSLfUMBT1aAJOCqbN76Sb
+          3i/yVaDgxOQ7xXOLxFTkmmbibgF7MVDC9k3jTNLhXLEKFiApfCe+xV2JDLzQrTKVBE5xCYgMbMDTiPsgKAonlNxUtFIsNYulmGad
+          BxEnZmnGmKyTdDgkg6oEkbHyZUO93r5AwWNs9Q62ufc8wtw10As3PfiYUxstqxkucY7IHHaLiZOaXNjCgCj3UEaPCdjCrEcsgTVd
+          7cGm6aOxTNmHS1jcIl/9AUgqkIfP0hWkne+Vu0VKuYB/ZV4h93ISlwtLbE4JmZOxwsotJUAw4VLhLRt9/xoPhnDlP6OR8Gfp49/l
+          4y/p4z/kY26tTmag+gF1xpxLKxGwQ8/3PVHdMYq7YFHKUmvwNzZThP/J9scoQ0mk1Hbh1pMZSEsquKbiS1A2cDBCZvN18rPUPNML
+          gWmwOKz7e7FoJov+USz6pTDVbb5TLJ/MZ4ME/SKuvB5K0J6h6xUS8IS+EIPiJhA/WO5SO18xdYFzn63buEMu5YaKG9CPgq3PebgR
+          OrO5J4tbnpbOwl6Dg6YimctgmZ5fzLSMZZmAvibtOa6FUUK8cJ5lctDl8kxWMrm3SIt0INTG4QSxh9HnslsWmViS6wcUWUZ1UaUl
+          mNoIIin/rGRelZDLcSKXp5x3qQkon9QA226gRMnagfTnVRfwUO7fROV+WwiyCO69X1XCFlq+z7NyYGdnysjA+B+hPpoqy3Li2D5z
+          9xh60CaysAssXWs3CZq+1QfaSR1CuKSwGdI0HDqNzLhiroBSFMmHzgG6vicjGxGCvkjIDzKcYhz8HBX45I6dUog5kZoTqDlxUvKk
+          ilwsCSzwo8B5goinfb272+/j32JTV9abm6+3EjX0F+mZ9VhqFBe9u/vmTbs9v+ivuESNXlk31VNTql2qjVIZMz1E5zbH842EIp5a
+          N39PZ+D/y3Bv/jeP3z83/Xtv/rfb7lXzv73Vbp3/fQp4XP53PnkqHA6GDzOnJ/Lb41Kv1d7i/tzp1HPBgNG/jJMkCj/Kh0elRDNs
+          1G0ric2uLJPeK78HA58qs/reixmaygdgjI6IDZvw/S01OaS6KYI8OJurm6GOUi+i+8c71w6Tt6M2SnUhVGLwS3fx9taSuvd2MipX
+          yQnfZ5e2FlR+gGg0CvK8sjQcEFbCUoha17r0y1QqN5S1seeAv8RIhBlgWRzxwPZJbMMXO7CbWBjKGpWr0ckd8BfRhwWn0AZX7FKK
+          Avq1YMVwanBKMTUdDfCKGNmW18bWibo+po3bikSgcA0N3BAWIpfcLUzttWT6oymz4WKrTWkPdmOVm1bTEUMt8DBymSFnhKriaomY
+          eokzklltiaqwJ/KhlEoGfxDWqxPKmaldnC9WbXOuk/3Dd+DW3Z2OQiUAEosWyFdLLvpCYknjcJh67QvnQb/09COM/yd0OU/34Ft/
+          tX1nelkTEFrm2dFKUxwVaboNrgRmE9cWjzi31IPjd8ePWyuKyIMWeYCLXP0BFnmAi+z0exvlyCLnC4apS3JhoDFEJZUg9tT5nKJZ
+          qSTq5GVClMe3HiZwAOnIn7B0RXPSqdKyS+MdNGVquFIgneurjD1CNi0UFeObhM+IiUGRh+kOaRlgM5ju413Nk4QzOzDV2mQiOZam
+          E7xWRIo4eAGUmAWDQ1jVFce8Y6Knhqhcy4lkGQgKLq7SQqod1q+1q8nzDNdonBSRPR4nS7AVScSZCc2bqdIW9dRYtgpPpgNdyfKy
+          d5uiUV5kLv1/UfpAY1gE0w+mzEbdQYPKMotKcgjCRQP72gQZVd+90ASD1CT7EN4OQbjkTPBQnaVER8sqxRN6yUfj4JLxXTS8yfLF
+          35mxnrAvEb6lwqHyaXSCCbbjQWqereXSUumQkdBaJOpPLT6LKYjuCYSPl8wvGo5yZj7faHTIlkoaxGvHRzI6O97dRQnKJlGbS5FL
+          +eFbgUdFu5GTqOjI0Te7pzsfLvaP9k/zcxNTuSxNTYImmTbJyJo/mJOpT1Nvh542frArF/wbaz5ngtBqwQ4+HPrpbtuEPQY+A5XB
+          hCGqu22pd9E3PDsnl0moBbBU0TkvzwnNztrnqL6FVlT+OgbWrHkEiMh1FrT9O/11o6QJG+QShTQ9a9HdkUVWadYUaJZQE+YqkJOs
+          kC58djqg5V1wPSQe1dyydppR5xXSQlPbwsMqU61oYR/NXfAlGVcObdYzZ7NoEnmKFeAfBPwu8xN7AZ8zXqcqupCnshVu/1MgGt7x
+          d5MRiNBIPo1klmu+AwiC4aB7aBCHK59O3gTQjqOI0LsCdfWVW6llDe/8o34LUGf184S5gXVeTOBhLWDUIqYqsQAjcDuxGLyfQvHp
+          3uLl8Kls2iQcV3K6B1/GeCoKnxN5OrqQVDDva4LEvFH9VA5IGnd5e8GUkwsbc9M4jAkO2Ao0lWnA6pkogj6mldjMD7YHXrEabCwH
+          +4iDTZcOVswrAZnNSshD3/24f3G68/Ppjx923jbRDW3ienHJY1w2cHXalHTkU6RLU9LndM/SjlWFwTYZgG4mUy+88tVZNJjzghMv
+          GXs1m+uqIg7CtXKrR3O1a82TXF6RSB5x/IMgjxyRxZ465fbIZr4tw+PLl1U/pygXmKTlsLNcJ7gvZ1t4B4ljgR2ZLa1X7DNBM16Q
+          Nu1ZVdcgBS3C8Sgb6a0sARP/gqzR7g8wFW69bdqHXaPcYvGIiDd4xakEmWuYyez02zCeqUbB/y+UaAlwQhKd8KTYBCZ7CdgsxRel
+          ClXVVOlDzIh2kA7yw4R5NzfB5lnkV50B3d1dMNDtQhEq2gRpLgTBW0WzBHVfxZ15zKgyCIKYOnAEdQfKCCsNIBcQxUcar4I99lG/
+          fOTMASrowd5GCQ+Bv0lTtozYyiTJaXV8qMPbpRtXSqWH6x7GRUA8sGArgJtU6CbpoTIO1J8PGuiDBh58xPgm/Vwm7egYOeBQCApW
+          03dBR9LjdKe4gacZDQKm3tX358wFW0V5luIljdvsEKdOFP+mUMj/8vTngF/7BwCfcf9/dbW+//0ksJD/lZ9yfukcd+f/oW6tcv+7
+          s9br1/n/JwF0YAzhjFiQ/pLVWIf9GEs9F88ISzk2LM5/y2t8f5P9rFhW4Q0LLNfJ2tO8k8tgu/NkZIwN3rjuShRWr2aYThRx1wsh
+          Phbo+OlbAfqqr6USvjp1nP5qeEEsSMn2CO9KyMsD6ABI55gqRFg48XgU4sU+RERFsmlVwmdxBPu9gKqbrHKdnBmV4xFauDponJNb
+          vUb8Ibruq1RInTHgRK+32rTzA21jMibL42PF/3dot0M7HazAbLpq3JXP+Q+6sfSF8Q22S9pSb34oJBu/7gTP7tf/fr+q/70eVNf6
+          /wQQ8aF+9wf9NAlsPhRbKz8H1913jUJNbHPb95kvj0YajT+Q169fk48gLYxcegn8DyAKHyVJLNZbreyALWQJHiczP4ohyLsc+sxz
+          8Dgnv2ZItOyTqc1GPt6f2NzcbMy9k2FLN2uU3reQlr5ULzDpNcqvT1D61mkUX1sBXTqrKydHb96f7B2fNsqvRsAOvT/R/st0tkbh
+          tRXQE4KcRuFlFVsVk9CYfzvFls7mq/rfmtOLgbbGsQsGN12ooPHsa89xj/53e+3Vqv736/e/PA384bvWWPDWJfh/sDWSGELmKOw1
+          DMM4cUaceZcJcT1G7KtkzHw8mRVCvm1FH26taKcBCgZjxsm8anshmdthKAyfnSALTO9y1iRj7vveJYST/x4zkTQah9v4C5R0e8QX
+          vQwIBO4mtLPWZfSIeb5KNwqPME2IrSCw9wIWjZOtXtvCeJyvV69cc+hnu6ZFXeZELjMtNU2qDOZ1kM6VdmAU7/CBOTS5sanbvTbP
+          /rV5/tLabKUFeIMNujakyYJl4CrlsZkwcQkDI7WWAUtsWjKZk246imhh79bN4fatYVln7fOzzPk619ZO5r6uE3NSqJKh/AQJX5n1
+          gZNqp0UF/jAwKAjE+sa51QBHBCY8m+QzZIQqj49msjwB/qUFrdyvKX5VbxJC3MAg2RTol+JA0a+ayh/ivMQTkMNt6/xspXOujDve
+          Adh6OCaF9xsVv2d7nXwh0mJk1Hyc+RUqZGgAska6vWQXdyfScTVW8gKFOGaS9Hi4GOycjS/TuemwcqkNzHFukRujtAmCX4jP4CuW
+          dz8oVwWZF1moAWLLDvnGKJtHwW1D3pbdIlKDjDm9NSytLg1c+lVTrR4Qo17CAmFqVdGDgKqI8aXJB8a/bq5ut+iL70ErBgZ+v5lA
+          xCDbQYlvw2YOjQ+txrJ5Ad0pTD7lMI+J3axGzMFRN2Fu6790Z/19AMT/LElQlL7dK+Du8/+7/U71/R+vVmv//0lAmbtDO7SH8tdu
+          +kSDM/kT2IjnL1VDkFYRwttQvZjtuXICnm/gJozPd5jd54VzJlm9jfG27Zv5eagSwPcSo/fgG2SVdZa4hhpqqKGGGmqooYYaaqih
+          hhpqqKGGGmqooYYaaqihhhpqqKGGGmqooYYaaqhhDv4DdUcZQgB4AAA=
+          BUNDLE_END
+      - name: Bilder einsetzen (Ordner bilder/ im Repo)
+        working-directory: src
+        run: |
+          pip install pillow --break-system-packages -q || pip install pillow -q
+          python3 - <<'PYEND'
+          from PIL import Image
+          import os, shutil
+          n = 'src/main/resources/assets/nebulatrack/textures/gui/'
+          m = 'src/main/resources/assets/minecraft/textures/gui/title/'
+          os.makedirs(n, exist_ok=True); os.makedirs(m, exist_ok=True)
+          Image.open('../bilder/night_title.jpg').convert('RGB').save(n + 'night_title.png')
+          shutil.copy('../bilder/logo.png', n + 'logo.png')
+          shutil.copy('../bilder/minecraft.png', m + 'minecraft.png')
+          Image.new('RGBA', (128, 14), (0, 0, 0, 0)).save(m + 'edition.png')
+          PYEND
+      - name: Passende Fabric-Versionen eintragen
+        working-directory: src
+        run: python3 update_versions.py
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: current
+      - name: Bauen
+        working-directory: src
+        run: gradle build --no-daemon
+      - name: Fabric API holen und Release erstellen
+        working-directory: src
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          V=$(grep '^fabric_version=' gradle.properties | cut -d= -f2)
+          curl -fsSL -o build/libs/fabric-api.jar "https://maven.fabricmc.net/net/fabricmc/fabric-api/fabric-api/${V}/fabric-api-${V}.jar"
+          rm -f build/libs/*-sources.jar
+          gh release create "track-${{ github.run_number }}" build/libs/*.jar --repo "${{ github.repository }}" --title "Nebula Track Build ${{ github.run_number }}" --notes "nebula-track + fabric-api in den mods-Ordner"
